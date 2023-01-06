@@ -1,26 +1,52 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeImage } = require('electron')
+const path = require('path')
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 800,
+        width: 1000,
         height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, 'launcher/preload.js'),
+        },
+    });
+    ipcMain.handle('launch', (event, args) => launch(args));
+    win.loadFile('src/launcher/index.html');
+    win.setMenu(null);
+    win.setIcon('src/img/icon.png');
+    win.setResizable(false);
+    app.on('window-all-closed', () => {
+        if (process.platform !== 'darwin') app.quit()
     })
-
-    win.loadFile('index.html')
 }
-
 app.whenReady().then(() => {
-    createWindow();
+    createWindow()
 
     app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
-        }
-    });
-});
+        if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    })
+})
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
+    if (process.platform !== 'darwin') app.quit()
+})
+
+function launch(args) {
+    if (args == 'jats') {
+        const jats = new BrowserWindow({
+            width: 1280,
+            height: 720,
+            movable: false,
+            resizable: false,
+            maximizable: false,
+            frame: false,
+            webPreferences: {
+                preload: path.join(__dirname, 'game/preload.js'),
+            },
+        });
+        jats.loadFile('src/game/index.html');
+        jats.setMenu(null);
+        jats.setMenuBarVisibility(false);
+        jats.maximize();
+        jats.setIcon('src/img/icon.png');
     }
-});
+}
