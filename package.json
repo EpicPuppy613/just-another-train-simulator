@@ -1,0 +1,22 @@
+{
+  "name": "just-another-train-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EpicPuppy613/just-another-train-simulator.git"
+  },
+  "author": "EpicPuppy613",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EpicPuppy613/just-another-train-simulator/issues"
+  },
+  "homepage": "https://github.com/EpicPuppy613/just-another-train-simulator#readme",
+  "devDependencies": {
+    "electron": "^22.0.0"
+  }
+}
