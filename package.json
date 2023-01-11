@@ -4,6 +4,7 @@
   "description": "Basic Train Simulation Game",
   "main": "src/index.js",
   "scripts": {
+    "prestart": "tsc",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
@@ -24,6 +25,7 @@
     "@electron-forge/maker-rpm": "^6.0.4",
     "@electron-forge/maker-squirrel": "^6.0.4",
     "@electron-forge/maker-zip": "^6.0.4",
+    "@tsconfig/esm": "^1.0.2",
     "electron": "^22.0.0"
   },
   "dependencies": {

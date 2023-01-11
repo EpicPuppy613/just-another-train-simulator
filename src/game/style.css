@@ -3,3 +3,8 @@ html {
     background-color: black;
     color: white;
 }
+#game {
+    position: absolute;
+    left: 0;
+    top: 0;
+}

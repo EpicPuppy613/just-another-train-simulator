@@ -1,6 +1,3 @@
-const quitButton = document.getElementById("quit");
-quitButton.addEventListener('click', quit);
-
-function quit() {
-    window.close();
-}
+document.addEventListener('keydown', (e) => {
+    if (e.code == "F12") game.devtools();
+});

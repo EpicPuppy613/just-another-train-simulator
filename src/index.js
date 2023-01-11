@@ -1,5 +1,5 @@
-const { app, BrowserWindow, ipcMain, nativeImage } = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcMain, screen } = require('electron');
+const path = require('path');
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -33,8 +33,6 @@ app.on('window-all-closed', () => {
 function launch(args) {
     if (args == 'jats') {
         const jats = new BrowserWindow({
-            width: 1280,
-            height: 720,
             movable: false,
             resizable: false,
             maximizable: false,
@@ -48,5 +46,6 @@ function launch(args) {
         jats.setMenuBarVisibility(false);
         jats.maximize();
         jats.setIcon('src/img/icon.png');
+        ipcMain.handle('devtools', () => jats.webContents.openDevTools());
     }
 }
