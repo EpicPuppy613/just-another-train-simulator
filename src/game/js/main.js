@@ -29,7 +29,8 @@ const G = {
         fore: null,
         mid: null,
         back: null
-    }
+    },
+    scenes: {}
 };
 //CANVAS SETUP
 G.ctx = G.canvas.getContext('2d');
@@ -44,7 +45,7 @@ G.layers.back = G.layers.all[3].getContext('2d');
 G.canvas.width = G.width;
 G.canvas.height = G.height;
 let x = 0;
-let direction = true;
+let speed = 0;
 //MAIN FUNCTION
 function Main() {
     //TICK FRAME COUNTER
@@ -56,16 +57,14 @@ function Main() {
     G.layers.fore.clearRect(0, 0, G.width, G.height);
     G.layers.ui.clearRect(0, 0, G.width, G.height);
     //MOVE TEST RECTANGLE
-    if (direction)
-        x += 500 * G.frame.time;
-    else
-        x -= 500 * G.frame.time;
-    if (x + 50 >= G.width)
-        direction = false;
-    if (x <= 0)
-        direction = true;
+    x += speed * G.frame.time;
+    speed += 50 * G.frame.time;
+    if (x - 110 > G.width)
+        x = -110;
     G.layers.mid.fillStyle = 'white';
+    G.layers.mid.fillRect(x - 60, 100, 50, 20);
     G.layers.mid.fillRect(x, 100, 50, 20);
+    G.layers.mid.fillRect(x + 60, 100, 50, 20);
     //DRAW FPS
     G.layers.ui.fillStyle = 'white';
     G.layers.ui.textBaseline = 'top';
@@ -93,3 +92,4 @@ window.addEventListener('resize', () => {
     G.canvas.height = window.innerHeight;
     G.layers.all.forEach(canvas => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 });
+export {};
