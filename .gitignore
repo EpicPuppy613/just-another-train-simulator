@@ -110,4 +110,4 @@ out/
 .vscode/
 
 # Compiled .ts
-src/game/**/*.js
+src/game/js/**/*.js
