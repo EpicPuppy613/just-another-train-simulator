@@ -108,3 +108,6 @@ out/
 
 # VSCode
 .vscode/
+
+# Compiled .ts
+src/game/**/*.js

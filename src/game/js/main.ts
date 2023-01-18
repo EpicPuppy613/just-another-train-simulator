@@ -92,12 +92,10 @@ function Main() {
 
     //MOVE TEST RECTANGLE
     x += speed * G.frame.time;
-    speed += 50 * G.frame.time;
+    speed += 100 * G.frame.time;
     if (x - 110 > G.width) x = -110;
     G.layers.mid.fillStyle = 'white';
-    G.layers.mid.fillRect(x - 60, 100, 50, 20);
     G.layers.mid.fillRect(x, 100, 50, 20);
-    G.layers.mid.fillRect(x + 60, 100, 50, 20);
 
     //DRAW FPS
     G.layers.ui.fillStyle = 'white';

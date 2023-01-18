@@ -1,3 +1,0 @@
-class Scene {
-}
-export { Scene };
