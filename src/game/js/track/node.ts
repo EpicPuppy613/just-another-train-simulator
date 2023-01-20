@@ -1,3 +1,6 @@
+/**
+ * @property {"s" | "c" | "b"} type
+ */
 export class RailNode {
     length: number
     position: {
@@ -6,7 +9,9 @@ export class RailNode {
     }
     constructor (length: number, x: number, y: number) {
         this.length = length;
-        this.position.x = x;
-        this.position.y = y;
+        this.position = {
+            x: x,
+            y: y
+        }
     }
 }

@@ -1,4 +1,8 @@
-import { Scene } from "./scene";
+import { Scene } from "./scene.js";
+import { RailNode } from "./track/node.js";
+import { RailNodeCurve } from "./track/nodeCurve.js";
+import { RailNodeStraight } from "./track/nodeStraight.js";
+import { render } from "./track/renderTrack.js";
 
 type G = {
     canvas: HTMLCanvasElement
@@ -17,6 +21,7 @@ type G = {
     scenes: {
         [index: string]: Scene
     }
+    rails: RailNode[]
 }
 type FrameController = {
     last: number
@@ -58,7 +63,8 @@ const G: G = {
         mid: null,
         back: null
     },
-    scenes: {}
+    scenes: {},
+    rails: [new RailNodeStraight(400, 200, 100, 0), new RailNodeCurve(600, 100, 100, false, Math.PI * -0.5, Math.PI * 0.5)]
 }
 
 //CANVAS SETUP
@@ -94,14 +100,17 @@ function Main() {
     x += speed * G.frame.time;
     speed += 100 * G.frame.time;
     if (x - 110 > G.width) x = -110;
-    G.layers.mid.fillStyle = 'white';
-    G.layers.mid.fillRect(x, 100, 50, 20);
+    G.layers.fore.fillStyle = 'white';
+    G.layers.fore.fillRect(x, 100, 50, 20);
 
     //DRAW FPS
     G.layers.ui.fillStyle = 'white';
     G.layers.ui.textBaseline = 'top';
     G.layers.ui.font = '16px sans-serif';
     G.layers.ui.fillText("FPS: " + G.frame.fps().toFixed(0), 10, 10);
+
+    //DRAW TRACK
+    render(G.layers.mid, G.rails);
 
     //RENDER LAYERS
     G.ctx.drawImage(G.layers.all[3], 0, 0);

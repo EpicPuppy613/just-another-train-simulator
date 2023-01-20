@@ -1,4 +1,4 @@
-import { RailNode } from "./node";
+import { RailNode } from "./node.js";
 
 /**
  * RailNode Object, Creates the railway network and responsible for signal control

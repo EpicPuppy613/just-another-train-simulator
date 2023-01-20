@@ -1,4 +1,4 @@
-import { RailNode } from "./node";
+import { RailNode } from "./node.js";
 
 /**
  * RailNode Object, Creates the railway network and responsible for signal control
@@ -22,6 +22,7 @@ export class RailNodeCurve extends RailNode {
     endAngle: number
     constructor (x: number, y: number, radius: number, clockwise: boolean, startAngle: number, endAngle: number) {
         super(Math.abs(startAngle - endAngle) * radius, x, y);
+        this.radius = radius;
         this.clockwise = clockwise;
         this.startAngle = startAngle;
         this.endAngle = endAngle;
